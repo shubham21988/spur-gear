@@ -1,0 +1,9 @@
+function [fs, Cv, Pef] = moduleassessment(m, zp, zg, b, Mt, np, Cs, Sut, Y)
+dp = m * zp;
+dg = m * zg;
+Pt = tangentialforce(Mt, dp, 0, 0, 0, 0);
+v = velocity(dp, np);
+Cv = velocityfactor(v);
+Pef = effectiveload(Cs, Cv, Pt);
+Sb = beamstrength(m, b, Sut, Y);
+fs = Sb / Pef;
